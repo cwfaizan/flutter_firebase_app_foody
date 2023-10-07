@@ -1,7 +1,7 @@
-# Flutter Mobile App (Online Food Booking App: Foody)
+# Online Food Ordering Mobile App: Foody (Flutter Mobile App with Firebase & riverpod)
 This project is Android and iOS Mobile App, developed in Dart Flutter framwork.
 
-# Foody with Firebase, riverpod & go_router
+# Foody App Functionality
 Following functionality has implemented in this app:
 - Repository pattern
 - Firebase Authentication
@@ -10,7 +10,7 @@ Following functionality has implemented in this app:
 - Show food
 - Delete food
 
-## Flutter Packages details
+## Foody App Packages details
 
 In this project, following packages are used to develop mobile app:
 
