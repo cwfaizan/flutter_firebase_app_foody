@@ -1,4 +1,4 @@
-# Online Food Ordering Mobile App: Foody (Flutter Mobile App with Firebase & riverpod)
+# Online Food Ordering Flutter Mobile App: Foody (with Firebase & riverpod)
 This project is Android and iOS Mobile App, developed in Dart Flutter framwork.
 
 # Foody App Functionality
