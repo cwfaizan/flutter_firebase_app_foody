@@ -1,10 +1,27 @@
-# cwf_fudy
+# Flutter Mobile App (Online Food Booking App: Fudy)
+This project is Android and iOS Mobile App, developed in Dart Flutter framwork.
 
-A new Flutter project.
+# Fudy with Firebase, riverpod & go_router
+Following functionality has implemented in this app:
+- Repository pattern
+- Firebase Authentication
+- Post/create new food
+- Update food
+- Show food
+- Delete food
 
-## Getting Started
+## Flutter Packages details
 
-This project is a starting point for a Flutter application.
+In this project, following packages are used to develop mobile app:
+
+- [flutter_riverpod](https://pub.dev/packages/flutter_riverpod): for State Management
+- [riverpod_annotation](https://pub.dev/packages/riverpod_annotation): for State Management
+- [go_router](https://pub.dev/packages/go_router): for navigation
+- [faker](https://pub.dev/packages/faker): for dummy fake data
+- [firebase_core](https://pub.dev/packages/firebase_core): for Firebase
+- [firebase_auth](https://pub.dev/packages/firebase_auth): for Authentication
+- [cloud_firestore](https://pub.dev/packages/cloud_firestore): for cloud firestore
+- [change_app_package_name](https://pub.dev/packages/change_app_package_name): for change app package name
 
 A few resources to get you started if this is your first Flutter project:
 
