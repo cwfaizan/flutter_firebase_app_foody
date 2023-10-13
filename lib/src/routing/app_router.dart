@@ -16,12 +16,12 @@ enum AppRoute {
 }
 
 final goRouterProvider = Provider<GoRouter>((ref) {
-  final firebaseAuth = ref.watch(firebaseAuthProvider);
+  final fbAuthInstance = ref.watch(fbAuthInstanceProvider);
   return GoRouter(
     initialLocation: '/sign-in',
     debugLogDiagnostics: true,
     redirect: (context, state) {
-      final isLoggedIn = firebaseAuth.currentUser != null;
+      final isLoggedIn = fbAuthInstance.currentUser != null;
       if (isLoggedIn) {
         if (state.uri.path == '/sign-in') {
           return '/home';
@@ -33,7 +33,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       }
       return null;
     },
-    refreshListenable: GoRouterRefreshStream(firebaseAuth.authStateChanges()),
+    refreshListenable: GoRouterRefreshStream(fbAuthInstance.authStateChanges()),
     routes: [
       GoRoute(
         path: '/sign-in',
