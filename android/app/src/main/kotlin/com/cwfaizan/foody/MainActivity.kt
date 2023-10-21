@@ -1,4 +1,4 @@
-package com.example.cwf_fudy
+package com.cwfaizan.foody
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:46579281053:android:4d8e9e26cb3f7988223874",
+        "mobilesdk_app_id": "1:46579281053:android:3fea5cf26b4a3b2c223874",
         "android_client_info": {
-          "package_name": "com.example.cwf_fudy"
+          "package_name": "com.cwfaizan.foody"
         }
       },
       "oauth_client": [
