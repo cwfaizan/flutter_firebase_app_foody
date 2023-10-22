@@ -3,8 +3,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../models/app_user.dart';
 import '../models/firebase_app_user.dart';
+import 'fb_auth_instance.dart';
 
-// part 'auth_repository.g.dart';
+part 'auth_repository.g.dart';
 
 class AuthRepository {
   AuthRepository(this._auth);
@@ -36,9 +37,9 @@ class AuthRepository {
 
   /// Notifies about changes to the user's sign-in state (such as sign-in or
   /// sign-out) and also token refresh events.
-  // Stream<AppUser?> idTokenChanges() {
-  //   return _auth.idTokenChanges().map(_convertUser);
-  // }
+  Stream<AppUser?> idTokenChanges() {
+    return _auth.idTokenChanges().map(_convertUser);
+  }
 
   AppUser? get currentUser => _convertUser(_auth.currentUser);
 
@@ -47,11 +48,9 @@ class AuthRepository {
       user != null ? FirebaseAppUser(user) : null;
 }
 
-/*
-
 @Riverpod(keepAlive: true)
 AuthRepository authRepository(AuthRepositoryRef ref) {
-  return AuthRepository(FirebaseAuth.instance);
+  return AuthRepository(ref.watch(fbAuthInstanceProvider));
 }
 
 // * Using keepAlive since other providers need it to be an
@@ -77,5 +76,3 @@ FutureOr<bool> isCurrentUserAdmin(IsCurrentUserAdminRef ref) {
     return false;
   }
 }
-
-*/

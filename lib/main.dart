@@ -3,7 +3,7 @@ import 'package:cwf_fudy/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'src/routing/app_router.dart';
+import 'my_app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,22 +12,4 @@ Future<void> main() async {
   );
   // await setupEmulators();
   runApp(const ProviderScope(child: MyApp()));
-}
-
-class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final goRouter = ref.watch(goRouterProvider);
-    return MaterialApp.router(
-      routerConfig: goRouter,
-      title: 'cwFaizan Foody',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-    );
-  }
 }

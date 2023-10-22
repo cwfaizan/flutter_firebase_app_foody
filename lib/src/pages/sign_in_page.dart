@@ -1,18 +1,23 @@
+import 'package:cwf_fudy/src/widgets/submit_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../enums/auth_form_type.dart';
 import '../routing/app_router.dart';
 import '../widgets/custom_app_bar.dart';
-import '../widgets/custom_message.dart';
 
+// ignore: must_be_immutable
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  // TextEditingController(text: 'faizan.abbas020@gmail.com');
+  TextEditingController passwordController = TextEditingController();
+  // TextEditingController(text: '12345678');
 
   @override
   Widget build(BuildContext context) {
+    print('object acProvider 1');
     return Scaffold(
       appBar: customAppBar('Sign In'),
       body: Padding(
@@ -21,17 +26,16 @@ class SignInPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
-              controller: emailController..text = 'faizan.abbas020@gmail.com',
+              controller: emailController,
             ),
             TextFormField(
-              controller: passwordController..text = '12345678',
+              controller: passwordController,
               obscureText: true,
             ),
-            FilledButton(
-              onPressed: () {
-                signInWithEmailAndPassword(context);
-              },
-              child: const Text('Sign In'),
+            SubmitButton(
+              email: emailController.text,
+              password: passwordController.text,
+              formType: AuthFormType.signIn,
             ),
             Row(
               children: [
@@ -55,24 +59,5 @@ class SignInPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> signInWithEmailAndPassword(BuildContext context) async {
-    try {
-      // ignore: unused_local_variable
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        // ignore: use_build_context_synchronously
-        showMessage(context, 'No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        // ignore: use_build_context_synchronously
-        showMessage(context, 'Wrong password provided for that user.');
-      }
-    }
   }
 }

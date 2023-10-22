@@ -5,7 +5,7 @@ import '../pages/home_page.dart';
 import '../pages/profile_page.dart';
 import '../pages/sign_in_page.dart';
 import '../pages/sign_up_page.dart';
-import '../providers/firebase_auth_provider.dart';
+import '../providers/fb_auth_instance.dart';
 import 'go_router_refresh_stream.dart';
 
 enum AppRoute {
