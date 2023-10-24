@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/controllers/auth_controller.dart';
-import '../utils/async_value_ui.dart';
-import '../enums/auth_form_type.dart';
+import '../controllers/auth_controller.dart';
+import '../../../utils/async_value_ui.dart';
+import '../../../enums/auth_form_type.dart';
 
 class SubmitButton extends ConsumerWidget {
   const SubmitButton({

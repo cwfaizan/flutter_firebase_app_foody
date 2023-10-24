@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../pages/home_page.dart';
-import '../pages/profile_page.dart';
-import '../pages/sign_in_page.dart';
-import '../pages/sign_up_page.dart';
-import '../providers/fb_auth_instance.dart';
+import '../features/authentication/repositories/fb_auth_instance.dart';
+import '../features/home_page.dart';
+import '../features/authentication/pages/profile_page.dart';
+import '../features/authentication/pages/sign_in_page.dart';
+import '../features/authentication/pages/sign_up_page.dart';
 import 'go_router_refresh_stream.dart';
 
 enum AppRoute {

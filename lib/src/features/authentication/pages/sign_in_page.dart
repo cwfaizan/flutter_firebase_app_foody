@@ -1,11 +1,11 @@
-import 'package:cwf_fudy/src/widgets/submit_button.dart';
+import 'package:cwf_fudy/src/features/authentication/widgets/submit_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../enums/auth_form_type.dart';
-import '../routing/app_router.dart';
-import '../widgets/custom_app_bar.dart';
+import '../../../enums/auth_form_type.dart';
+import '../../../routing/app_router.dart';
+import '../../../common_widgets/custom_app_bar.dart';
 
 // ignore: must_be_immutable
 class SignInPage extends StatelessWidget {

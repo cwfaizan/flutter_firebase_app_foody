@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../exceptions/app_exception.dart';
 import '../localization/string_hardcoded.dart';
-import '../widgets/alert_dialogs.dart';
+import '../common_widgets/alert_dialogs.dart';
 
 /// A helper [AsyncValue] extension to show an alert dialog on error
 extension AsyncValueUI on AsyncValue {
