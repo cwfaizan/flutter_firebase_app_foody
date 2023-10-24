@@ -10,14 +10,12 @@ import '../widgets/custom_app_bar.dart';
 // ignore: must_be_immutable
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});
-  TextEditingController emailController = TextEditingController();
-  // TextEditingController(text: 'faizan.abbas020@gmail.com');
-  TextEditingController passwordController = TextEditingController();
-  // TextEditingController(text: '12345678');
+  final emailController =
+      TextEditingController(text: 'faizan.abbas020@gmail.com');
+  final passwordController = TextEditingController(text: '12345678');
 
   @override
   Widget build(BuildContext context) {
-    print('object acProvider 1');
     return Scaffold(
       appBar: customAppBar('Sign In'),
       body: Padding(
@@ -33,8 +31,8 @@ class SignInPage extends StatelessWidget {
               obscureText: true,
             ),
             SubmitButton(
-              email: emailController.text,
-              password: passwordController.text,
+              email: emailController,
+              password: passwordController,
               formType: AuthFormType.signIn,
             ),
             Row(

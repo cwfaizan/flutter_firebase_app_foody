@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../enums/auth_form_type.dart';
-import '../providers/auth_repository.dart';
+import '../../enums/auth_form_type.dart';
+import '../repositories/auth_repository.dart';
 
 part 'auth_controller.g.dart';
 
@@ -10,7 +10,7 @@ class AuthController extends _$AuthController {
   @override
   FutureOr<void> build() {}
 
-  Future<bool> submit({
+  Future<void> submit({
     required String email,
     required String password,
     required AuthFormType formType,
@@ -25,7 +25,7 @@ class AuthController extends _$AuthController {
           return authRepository.createUserWithEmailAndPassword(email, password);
       }
     });
-    return state.hasError == false;
+    // return state.hasError == false;
   }
 
   // Future<void> _authenticate(

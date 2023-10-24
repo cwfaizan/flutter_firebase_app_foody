@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../models/app_user.dart';
-import '../models/firebase_app_user.dart';
-import 'fb_auth_instance.dart';
+import '../../models/app_user.dart';
+import '../../models/firebase_app_user.dart';
+import '../fb_auth_instance.dart';
 
 part 'auth_repository.g.dart';
 

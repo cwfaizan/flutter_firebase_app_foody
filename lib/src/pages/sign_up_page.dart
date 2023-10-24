@@ -9,8 +9,9 @@ import '../widgets/submit_button.dart';
 
 class SignUpPage extends ConsumerWidget {
   SignUpPage({super.key});
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController =
+      TextEditingController(text: 'faizan.abbas020@gmail.com');
+  final passwordController = TextEditingController(text: '12345678');
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,15 +23,15 @@ class SignUpPage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
-              controller: emailController..text = 'faizan.abbas020@gmail.com',
+              controller: emailController,
             ),
             TextFormField(
-              controller: passwordController..text = '12345678',
+              controller: passwordController,
               obscureText: true,
             ),
             SubmitButton(
-              email: emailController.text,
-              password: passwordController.text,
+              email: emailController,
+              password: passwordController,
               formType: AuthFormType.register,
             ),
             TextButton(
