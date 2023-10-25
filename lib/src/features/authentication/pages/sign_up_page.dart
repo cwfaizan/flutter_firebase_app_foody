@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../enums/auth_form_type.dart';
 import '../../../routing/app_router.dart';
-import '../../../common_widgets/custom_app_bar.dart';
 import '../widgets/submit_button.dart';
 
 class SignUpPage extends ConsumerWidget {
@@ -16,7 +15,7 @@ class SignUpPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: customAppBar('Sign Up'),
+      appBar: AppBar(title: const Text('Sign Up')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -36,7 +35,7 @@ class SignUpPage extends ConsumerWidget {
             ),
             TextButton(
               onPressed: () {
-                context.goNamed(AppRoute.signInPage.name);
+                context.goNamed(AppRoute.signIn.name);
               },
               child: const Text('Sign In'),
             ),

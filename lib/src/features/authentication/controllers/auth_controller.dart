@@ -1,3 +1,4 @@
+import 'package:cwf_fudy/src/features/authentication/services/auth_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../enums/auth_form_type.dart';
@@ -15,21 +16,10 @@ class AuthController extends _$AuthController {
     required String password,
     required AuthFormType formType,
   }) async {
+    final authService = ref.read(authServiceProvider);
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
-      final authRepository = ref.read(authRepositoryProvider);
-      switch (formType) {
-        case AuthFormType.signIn:
-          return authRepository.signInWithEmailAndPassword(email, password);
-        case AuthFormType.register:
-          await authRepository.createUserWithEmailAndPassword(email, password);
-          final user = ref.watch(authStateChangesProvider).value;
-          if (user != null) {
-            return user.sendEmailVerification();
-          }
-          return;
-      }
-    });
+    state = await AsyncValue.guard(
+        () => authService.authenticate(email, password, formType));
     // return state.hasError == false;
   }
 

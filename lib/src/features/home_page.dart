@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../common_widgets/custom_app_bar.dart';
 import 'authentication/controllers/auth_controller.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,8 +9,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
-        'Home',
+      appBar: AppBar(
+        title: const Text('Home'),
         actions: [
           Consumer(
             builder: (context, cRef, child) {

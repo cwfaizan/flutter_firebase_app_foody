@@ -1,11 +1,10 @@
-import 'package:cwf_fudy/src/features/authentication/widgets/submit_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../enums/auth_form_type.dart';
 import '../../../routing/app_router.dart';
-import '../../../common_widgets/custom_app_bar.dart';
+import '../widgets/submit_button.dart';
 
 // ignore: must_be_immutable
 class SignInPage extends StatelessWidget {
@@ -17,7 +16,7 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('Sign In'),
+      appBar: AppBar(title: const Text('Sign In')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -47,7 +46,7 @@ class SignInPage extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    context.goNamed(AppRoute.signUpPage.name);
+                    context.goNamed(AppRoute.signUp.name);
                   },
                   child: const Text('Sign Up'),
                 ),

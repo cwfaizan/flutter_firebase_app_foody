@@ -3,7 +3,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../models/app_user.dart';
 import '../models/firebase_app_user.dart';
-import 'fb_auth_instance.dart';
 
 part 'auth_repository.g.dart';
 
@@ -50,7 +49,7 @@ class AuthRepository {
 
 @Riverpod(keepAlive: true)
 AuthRepository authRepository(AuthRepositoryRef ref) {
-  return AuthRepository(ref.watch(fbAuthInstanceProvider));
+  return AuthRepository(FirebaseAuth.instance);
 }
 
 // * Using keepAlive since other providers need it to be an
