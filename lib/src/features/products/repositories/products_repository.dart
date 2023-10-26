@@ -37,7 +37,7 @@ class ProductsRepository {
     return ref.snapshots().map((snapshot) => snapshot.data());
   }
 
-  Future<void> createProduct(ProductID id, String imageUrl) {
+  Future<void> updateProductImageUrl(ProductID id, String imageUrl) {
     return _firestore.doc(productPath(id)).set(
       {
         'id': id,

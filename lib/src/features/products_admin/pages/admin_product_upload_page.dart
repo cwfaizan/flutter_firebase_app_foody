@@ -8,8 +8,8 @@ import '../widgets/admin_product_upload.dart';
 
 /// Used to upload a product to cloud storage
 class AdminProductUploadPage extends StatelessWidget {
-  const AdminProductUploadPage({super.key, required this.productId});
-  final ProductID productId;
+  const AdminProductUploadPage({super.key});
+  // final ProductID productId;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,9 @@ class AdminProductUploadPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Upload a product'.hardcoded),
       ),
-      body: ResponsiveCenter(
+      body: const ResponsiveCenter(
         maxContentWidth: Breakpoint.tablet,
-        child: AdminProductUpload(productId: productId),
+        child: AdminProductUpload(),
       ),
     );
   }

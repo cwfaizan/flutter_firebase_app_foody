@@ -25,7 +25,7 @@ class ImageUploadService {
     // write to Cloud Firestore or update image url to CF
     await ref
         .read(productsRepositoryProvider)
-        .createProduct(product.id, downloadUrl);
+        .updateProductImageUrl(product.id, downloadUrl);
   }
 
   Future<void> deleteProduct(Product product) async {
