@@ -1,5 +1,7 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:image_picker_web/image_picker_web.dart';
 
 import '../../../exceptions/app_exception.dart';
 import '../../products/models/product.dart';
@@ -12,20 +14,21 @@ class ImageUploadService {
   const ImageUploadService(this.ref);
   final Ref ref;
 
-  Future<void> uploadProduct(Product product) async {
-    final imageUrl = product.imageUrl;
-    if (imageUrl == null) {
+  Future<void> uploadProduct(ProductID productId) async {
+    // pick image using web
+    Uint8List? bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
+    if (bytesFromPicker == null) {
       throw NullProductImageUrlException();
     }
     // upload to storage and return download URL
     final downloadUrl = await ref
         .read(imageUploadRepositoryProvider)
-        .uploadProductImageFromAsset(imageUrl, product.id);
+        .uploadProductImageFromWeb(bytesFromPicker, productId);
 
     // write to Cloud Firestore or update image url to CF
     await ref
         .read(productsRepositoryProvider)
-        .updateProductImageUrl(product.id, downloadUrl);
+        .updateProductImageUrl(productId, downloadUrl);
   }
 
   Future<void> deleteProduct(Product product) async {

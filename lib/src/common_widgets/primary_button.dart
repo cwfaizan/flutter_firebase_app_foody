@@ -16,7 +16,7 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: Sizes.p48,
-      child: ElevatedButton(
+      child: FilledButton(
         onPressed: onPressed,
         child: isLoading
             ? const CircularProgressIndicator()

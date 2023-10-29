@@ -7,6 +7,10 @@ import '../features/authentication/pages/sign_up_page.dart';
 import '../features/authentication/repositories/auth_repository.dart';
 import '../features/not_found_page.dart';
 import '../features/products/pages/products_list_page.dart';
+import '../features/products_admin/pages/admin_product_edit_page.dart';
+import '../features/products_admin/pages/admin_product_upload_page.dart';
+import '../features/products_admin/pages/admin_products_add_page.dart';
+import '../features/products_admin/pages/admin_products_page.dart';
 import 'go_router_refresh_stream.dart';
 
 enum AppRoute {
@@ -27,34 +31,35 @@ enum AppRoute {
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
+  const initialRoute = '/admin';
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: initialRoute,
     debugLogDiagnostics: true,
     // * redirect logic based on the authentication state
     redirect: (context, state) async {
       final user = authRepository.currentUser;
       final isLoggedIn = user != null;
-      final path = state.uri.path;
+      final path = state.uri.path.toLowerCase();
       if (isLoggedIn) {
-        if (path == '/signIn') {
-          return '/';
+        if (path == '/signin') {
+          return initialRoute;
         }
-        if (path == '/signUp') {
-          return '/';
+        if (path == '/signup') {
+          return initialRoute;
         }
-        final isAdmin = await user.isAdmin();
+        // final isAdmin = await user.isAdmin();
         // prevent non-admin users to navigate to any of the admin pages
-        if (!isAdmin && path.startsWith('/admin')) {
-          return '/';
-        }
+        // if (!isAdmin && path.startsWith('/admin')) {
+        //   return initialRoute;
+        // }
       } else {
-        if (path == '/account' || path == '/orders') {
-          return '/';
-        }
+        // if (path == '/account' || path == '/orders') {
+        //   return initialRoute;
+        // }
         // prevent non signed-in users to navigate to any of the admin pages
-        if (path.startsWith('/admin')) {
-          return '/';
-        }
+        // if (path.startsWith('/admin')) {
+        //   return initialRoute;
+        // }
       }
       return null;
     },
@@ -62,6 +67,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(
         path: '/',
+        // path: initialRoute,
         name: AppRoute.home.name,
         builder: (context, state) => const ProductsListPage(),
         routes: [
@@ -136,45 +142,45 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               child: SignUpPage(),
             ),
           ),
-          // GoRoute(
-          //   path: 'admin',
-          //   name: AppRoute.admin.name,
-          //   pageBuilder: (context, state) => const MaterialPage(
-          //     fullscreenDialog: true,
-          //     child: AdminProductsScreen(),
-          //   ),
-          //   routes: [
-          //     GoRoute(
-          //       path: 'add',
-          //       name: AppRoute.adminAdd.name,
-          //       pageBuilder: (context, state) => const MaterialPage(
-          //         fullscreenDialog: true,
-          //         child: AdminProductsAddScreen(),
-          //       ),
-          //       routes: [
-          //         GoRoute(
-          //           path: ':id',
-          //           name: AppRoute.adminUploadProduct.name,
-          //           builder: (context, state) {
-          //             final productId = state.pathParameters['id']!;
-          //             return AdminProductUploadScreen(productId: productId);
-          //           },
-          //         ),
-          //       ],
-          //     ),
-          //     GoRoute(
-          //       path: 'edit/:id',
-          //       name: AppRoute.adminEditProduct.name,
-          //       pageBuilder: (context, state) {
-          //         final productId = state.pathParameters['id']!;
-          //         return MaterialPage(
-          //           fullscreenDialog: true,
-          //           child: AdminProductEditScreen(productId: productId),
-          //         );
-          //       },
-          //     ),
-          //   ],
-          // ),
+          GoRoute(
+            path: 'admin',
+            name: AppRoute.admin.name,
+            pageBuilder: (context, state) => const MaterialPage(
+              fullscreenDialog: true,
+              child: AdminProductsPage(),
+            ),
+            routes: [
+              GoRoute(
+                path: 'add',
+                name: AppRoute.adminAdd.name,
+                pageBuilder: (context, state) => const MaterialPage(
+                  fullscreenDialog: true,
+                  child: AdminProductsAddPage(),
+                ),
+                routes: [
+                  GoRoute(
+                    path: ':id',
+                    name: AppRoute.adminUploadProduct.name,
+                    builder: (context, state) {
+                      final productId = state.pathParameters['id']!;
+                      return AdminProductUploadPage(productId: productId);
+                    },
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: 'edit/:id',
+                name: AppRoute.adminEditProduct.name,
+                pageBuilder: (context, state) {
+                  final productId = state.pathParameters['id']!;
+                  return MaterialPage(
+                    fullscreenDialog: true,
+                    child: AdminProductEditPage(productId: productId),
+                  );
+                },
+              ),
+            ],
+          ),
         ],
       ),
     ],

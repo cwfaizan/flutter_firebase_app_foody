@@ -16,15 +16,16 @@ class AdminProductUploadController extends _$AdminProductUploadController
     // no-op
   }
 
-  Future<void> upload(Product product) async {
+  Future<void> upload(ProductID productId) async {
     try {
       state = const AsyncLoading();
       // delegate product upload to the service class
-      await ref.read(imageUploadServiceProvider).uploadProduct(product);
+      await ref.read(imageUploadServiceProvider).uploadProduct(productId);
       // On success, go to the product edit page
+      // ignore: avoid_manual_providers_as_generated_provider_dependency
       ref.read(goRouterProvider).goNamed(
         AppRoute.adminEditProduct.name,
-        pathParameters: {'id': product.id},
+        pathParameters: {'id': productId},
       );
     } catch (e, st) {
       if (mounted) {
