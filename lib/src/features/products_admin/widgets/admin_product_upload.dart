@@ -33,7 +33,7 @@ class AdminProductUpload extends ConsumerWidget {
             // CustomImage(imageUrl: product.imageUrl),
             gapH16,
             PrimaryButton(
-              text: 'Upload'.hardcoded,
+              text: 'Upload Product Image'.hardcoded,
               isLoading: isLoading,
               onPressed: isLoading
                   ? null

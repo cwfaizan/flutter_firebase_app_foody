@@ -31,21 +31,19 @@ enum AppRoute {
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
-  const initialRoute = '/admin';
   return GoRouter(
-    initialLocation: initialRoute,
+    initialLocation: '/',
     debugLogDiagnostics: true,
-    // * redirect logic based on the authentication state
     redirect: (context, state) async {
       final user = authRepository.currentUser;
       final isLoggedIn = user != null;
       final path = state.uri.path.toLowerCase();
       if (isLoggedIn) {
         if (path == '/signin') {
-          return initialRoute;
+          return '/';
         }
         if (path == '/signup') {
-          return initialRoute;
+          return '/';
         }
         // final isAdmin = await user.isAdmin();
         // prevent non-admin users to navigate to any of the admin pages
@@ -53,13 +51,13 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         //   return initialRoute;
         // }
       } else {
-        // if (path == '/account' || path == '/orders') {
-        //   return initialRoute;
-        // }
+        if (path == '/account' || path == '/orders') {
+          return '/';
+        }
         // prevent non signed-in users to navigate to any of the admin pages
-        // if (path.startsWith('/admin')) {
-        //   return initialRoute;
-        // }
+        if (path.startsWith('/admin')) {
+          return '/';
+        }
       }
       return null;
     },
@@ -67,7 +65,6 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(
         path: '/',
-        // path: initialRoute,
         name: AppRoute.home.name,
         builder: (context, state) => const ProductsListPage(),
         routes: [

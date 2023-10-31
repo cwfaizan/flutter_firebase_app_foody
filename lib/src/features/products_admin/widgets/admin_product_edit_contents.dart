@@ -1,63 +1,26 @@
+/*
 import 'package:cwf_fudy/src/localization/string_hardcoded.dart';
-import 'package:cwf_fudy/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../common_widgets/action_text_button.dart';
+import '../../../common_widgets/alert_dialogs.dart';
 import '../../../common_widgets/custom_image.dart';
-import '../../../common_widgets/error_message_widget.dart';
 import '../../../common_widgets/responsive_center.dart';
-import '../../../common_widgets/responsive_two_column_layout.dart';
 import '../../../constants/app_sizes.dart';
 import '../../products/models/product.dart';
-import '../../products/repositories/products_repository.dart';
-import '../controllers/admin_product_edit_controller.dart';
-import '../services/product_validator.dart';
-
-/// Widget screen for updating existing products (edit mode).
-/// Products are first created inside [AdminProductUploadPage].
-class AdminProductEditPage extends ConsumerWidget {
-  const AdminProductEditPage({super.key, required this.productId});
-  final ProductID productId;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // * By watching a [FutureProvider], the data is only loaded once.
-    // * This prevents unintended rebuilds while the user is entering form data
-    final productValue = ref.watch(productFutureProvider(productId));
-    // * Using .when rather than [AsyncValueWidget] to provide custom error and
-    // * loading screens
-    return productValue.when(
-      data: (product) => product != null
-          ? AdminProductEditPageContents(product: product)
-          : Scaffold(
-              appBar: AppBar(title: Text('Edit Product'.hardcoded)),
-              body: Center(
-                child: ErrorMessageWidget('Product not found'.hardcoded),
-              ),
-            ),
-      // * to prevent a black screen, return a [Scaffold] from the error and
-      // * loading screens
-      error: (e, st) =>
-          Scaffold(body: Center(child: ErrorMessageWidget(e.toString()))),
-      loading: () =>
-          const Scaffold(body: Center(child: CircularProgressIndicator())),
-    );
-  }
-}
 
 /// Widget containing most of the UI for editing a product
-class AdminProductEditPageContents extends ConsumerStatefulWidget {
-  const AdminProductEditPageContents({super.key, required this.product});
+class AdminProductEditContents extends ConsumerStatefulWidget {
+  const AdminProductEditContents({super.key, required this.product});
   final Product product;
 
   @override
-  ConsumerState<AdminProductEditPageContents> createState() =>
-      _AdminProductScreenContentsState();
+  ConsumerState<AdminProductEditContents> createState() =>
+      _AdminProductContentsState();
 }
 
-class _AdminProductScreenContentsState
-    extends ConsumerState<AdminProductEditPageContents> {
+class _AdminProductContentsState
+    extends ConsumerState<AdminProductEditContents> {
   final _formKey = GlobalKey<FormState>();
 
   final _titleController = TextEditingController();
@@ -86,30 +49,30 @@ class _AdminProductScreenContentsState
     super.dispose();
   }
 
-  // Future<void> _loadFromTemplate() async {
-  //   final template = await ref.read(templateProductProvider(product.id).future);
-  //   if (template != null) {
-  //     _titleController.text = template.title;
-  //     _descriptionController.text = template.description;
-  //     _priceController.text = template.price.toString();
-  //     _availableQuantityController.text = template.availableQuantity.toString();
-  //     _formKey.currentState!.validate();
-  //   }
-  // }
+  Future<void> _loadFromTemplate() async {
+    final template = await ref.read(templateProductProvider(product.id).future);
+    if (template != null) {
+      _titleController.text = template.title;
+      _descriptionController.text = template.description;
+      _priceController.text = template.price.toString();
+      _availableQuantityController.text = template.availableQuantity.toString();
+      _formKey.currentState!.validate();
+    }
+  }
 
-  // Future<void> _delete() async {
-  //   final delete = await showAlertDialog(
-  //     context: context,
-  //     title: 'Are you sure?'.hardcoded,
-  //     cancelActionText: 'Cancel'.hardcoded,
-  //     defaultActionText: 'Delete'.hardcoded,
-  //   );
-  //   if (delete == true) {
-  //     ref
-  //         .read(adminProductEditControllerProvider.notifier)
-  //         .deleteProduct(product);
-  //   }
-  // }
+  Future<void> _delete() async {
+    final delete = await showAlertDialog(
+      context: context,
+      title: 'Are you sure?'.hardcoded,
+      cancelActionText: 'Cancel'.hardcoded,
+      defaultActionText: 'Delete'.hardcoded,
+    );
+    if (delete == true) {
+      ref
+          .read(adminProductEditControllerProvider.notifier)
+          .deleteProduct(product);
+    }
+  }
 
   Future<void> _submit() async {
     if (_formKey.currentState!.validate()) {
@@ -222,13 +185,13 @@ class _AdminProductScreenContentsState
                             .availableQuantityValidator,
                       ),
                       gapH16,
-                      // const Divider(),
-                      // gapH8,
-                      // EditProductOptions(
-                      //   onLoadFromTemplate:
-                      //       isLoading ? null : _loadFromTemplate,
-                      //   onDelete: isLoading ? null : _delete,
-                      // ),
+                      const Divider(),
+                      gapH8,
+                      EditProductOptions(
+                        onLoadFromTemplate:
+                            isLoading ? null : _loadFromTemplate,
+                        onDelete: isLoading ? null : _delete,
+                      ),
                     ],
                   ),
                 ),
@@ -237,33 +200,6 @@ class _AdminProductScreenContentsState
           ),
         ),
       ),
-    );
-  }
-}
-/*
-/// Responsive widget with options to preload product data and delete a product
-class EditProductOptions extends StatelessWidget {
-  const EditProductOptions(
-      {super.key, required this.onLoadFromTemplate, required this.onDelete});
-  final VoidCallback? onLoadFromTemplate;
-  final VoidCallback? onDelete;
-
-  @override
-  Widget build(BuildContext context) {
-    return ResponsiveTwoColumnLayout(
-      rowMainAxisAlignment: MainAxisAlignment.center,
-      startContent: CustomTextButton(
-        text: 'Load from Template'.hardcoded,
-        style: Theme.of(context).textTheme.titleSmall,
-        onPressed: onLoadFromTemplate,
-      ),
-      endContent: CustomTextButton(
-        text: 'Delete Product'.hardcoded,
-        style:
-            Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.red),
-        onPressed: onDelete,
-      ),
-      spacing: Sizes.p8,
     );
   }
 }
