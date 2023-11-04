@@ -43,6 +43,7 @@ class AdminProductEditController extends _$AdminProductEditController
       state = value;
       if (success) {
         // on success, go back to previous screen
+        // ignore: avoid_manual_providers_as_generated_provider_dependency
         ref.read(goRouterProvider).pop();
       }
     }
@@ -59,6 +60,7 @@ class AdminProductEditController extends _$AdminProductEditController
       state = value;
       if (success) {
         // on success, go back to previous screen
+        // ignore: avoid_manual_providers_as_generated_provider_dependency
         ref.read(goRouterProvider).pop();
       }
     }

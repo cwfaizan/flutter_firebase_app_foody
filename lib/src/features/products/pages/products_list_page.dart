@@ -1,12 +1,7 @@
-import 'package:cwf_fudy/src/localization/string_hardcoded.dart';
-import 'package:cwf_fudy/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../common_widgets/home_app_bar/home_app_bar.dart';
-import '../../authentication/controllers/auth_controller.dart';
-import '../../authentication/repositories/auth_repository.dart';
 
 /// Shows the list of products with a search field at the top.
 class ProductsListPage extends ConsumerStatefulWidget {
@@ -45,8 +40,8 @@ class _ProductsListPageState extends ConsumerState<ProductsListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final authRepository = ref.watch(authRepositoryProvider);
-    final user = authRepository.currentUser;
+    // final authRepository = ref.watch(authRepositoryProvider);
+    // final user = authRepository.currentUser;
     return Scaffold(
       // appBar: AppBar(
       //   title: Text('Products Home'.hardcoded),
@@ -86,7 +81,7 @@ class _ProductsListPageState extends ConsumerState<ProductsListPage> {
       appBar: const HomeAppBar(),
       body: CustomScrollView(
         controller: _scrollController,
-        slivers: [
+        slivers: const [
           // const ResponsiveSliverCenter(
           //   padding: EdgeInsets.all(Sizes.p16),
           //   child: ProductsSearchTextField(),

@@ -1,26 +1,29 @@
-/*
 import 'package:cwf_fudy/src/localization/string_hardcoded.dart';
+import 'package:cwf_fudy/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../common_widgets/alert_dialogs.dart';
+import '../../../common_widgets/action_text_button.dart';
 import '../../../common_widgets/custom_image.dart';
 import '../../../common_widgets/responsive_center.dart';
+import '../../../common_widgets/responsive_two_column_layout.dart';
 import '../../../constants/app_sizes.dart';
 import '../../products/models/product.dart';
+import '../controllers/admin_product_edit_controller.dart';
+import '../services/product_validator.dart';
 
 /// Widget containing most of the UI for editing a product
-class AdminProductEditContents extends ConsumerStatefulWidget {
-  const AdminProductEditContents({super.key, required this.product});
+class AdminProductEditPageContents extends ConsumerStatefulWidget {
+  const AdminProductEditPageContents({super.key, required this.product});
   final Product product;
 
   @override
-  ConsumerState<AdminProductEditContents> createState() =>
-      _AdminProductContentsState();
+  ConsumerState<AdminProductEditPageContents> createState() =>
+      _AdminProductScreenContentsState();
 }
 
-class _AdminProductContentsState
-    extends ConsumerState<AdminProductEditContents> {
+class _AdminProductScreenContentsState
+    extends ConsumerState<AdminProductEditPageContents> {
   final _formKey = GlobalKey<FormState>();
 
   final _titleController = TextEditingController();
@@ -49,30 +52,19 @@ class _AdminProductContentsState
     super.dispose();
   }
 
-  Future<void> _loadFromTemplate() async {
-    final template = await ref.read(templateProductProvider(product.id).future);
-    if (template != null) {
-      _titleController.text = template.title;
-      _descriptionController.text = template.description;
-      _priceController.text = template.price.toString();
-      _availableQuantityController.text = template.availableQuantity.toString();
-      _formKey.currentState!.validate();
-    }
-  }
-
-  Future<void> _delete() async {
-    final delete = await showAlertDialog(
-      context: context,
-      title: 'Are you sure?'.hardcoded,
-      cancelActionText: 'Cancel'.hardcoded,
-      defaultActionText: 'Delete'.hardcoded,
-    );
-    if (delete == true) {
-      ref
-          .read(adminProductEditControllerProvider.notifier)
-          .deleteProduct(product);
-    }
-  }
+  // Future<void> _delete() async {
+  //   final delete = await showAlertDialog(
+  //     context: context,
+  //     title: 'Are you sure?'.hardcoded,
+  //     cancelActionText: 'Cancel'.hardcoded,
+  //     defaultActionText: 'Delete'.hardcoded,
+  //   );
+  //   if (delete == true) {
+  //     ref
+  //         .read(adminProductEditControllerProvider.notifier)
+  //         .deleteProduct(product);
+  //   }
+  // }
 
   Future<void> _submit() async {
     if (_formKey.currentState!.validate()) {
@@ -185,13 +177,13 @@ class _AdminProductContentsState
                             .availableQuantityValidator,
                       ),
                       gapH16,
-                      const Divider(),
-                      gapH8,
-                      EditProductOptions(
-                        onLoadFromTemplate:
-                            isLoading ? null : _loadFromTemplate,
-                        onDelete: isLoading ? null : _delete,
-                      ),
+                      // const Divider(),
+                      // gapH8,
+                      // EditProductOptions(
+                      //   onLoadFromTemplate:
+                      //       isLoading ? null : _loadFromTemplate,
+                      //   onDelete: isLoading ? null : _delete,
+                      // ),
                     ],
                   ),
                 ),
@@ -203,4 +195,3 @@ class _AdminProductContentsState
     );
   }
 }
-*/
