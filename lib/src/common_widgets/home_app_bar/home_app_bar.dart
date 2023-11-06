@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../constants/breakpoints.dart';
+import '../../features/authentication/controllers/auth_controller.dart';
 import '../../features/authentication/repositories/auth_repository.dart';
 import '../../routing/app_router.dart';
 import '../action_text_button.dart';
@@ -53,6 +54,13 @@ class HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
               key: MoreMenuButton.accountKey,
               text: 'Account'.hardcoded,
               onPressed: () => context.pushNamed(AppRoute.account.name),
+            ),
+            ActionTextButton(
+              key: MoreMenuButton.logoutKey,
+              text: 'Logout'.hardcoded,
+              onPressed: () {
+                ref.read(authControllerProvider.notifier).signOut();
+              },
             ),
           ] else
             ActionTextButton(

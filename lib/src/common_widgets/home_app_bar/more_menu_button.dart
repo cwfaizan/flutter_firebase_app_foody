@@ -22,6 +22,7 @@ class MoreMenuButton extends StatelessWidget {
   static const ordersKey = Key('menuOrders');
   static const accountKey = Key('menuAccount');
   static const adminKey = Key('menuAdmin');
+  static const logoutKey = Key('menuLogout');
 
   @override
   Widget build(BuildContext context) {
