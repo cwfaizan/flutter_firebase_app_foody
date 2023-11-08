@@ -88,6 +88,20 @@ class ProductStreamFamily extends Family<AsyncValue<Product?>> {
   /// See also [productStream].
   const ProductStreamFamily();
 
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'productStreamProvider';
+
   /// See also [productStream].
   ProductStreamProvider call(
     ProductID id,
@@ -107,19 +121,28 @@ class ProductStreamFamily extends Family<AsyncValue<Product?>> {
     );
   }
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
+  /// Enables overriding the behavior of this provider, no matter the parameters.
+  Override overrideWith(
+      Stream<Product?> Function(ProductStreamRef ref) create) {
+    return _$ProductStreamFamilyOverride(this, create);
+  }
+}
+
+class _$ProductStreamFamilyOverride
+    implements FamilyOverride<AsyncValue<Product?>> {
+  _$ProductStreamFamilyOverride(this.overriddenFamily, this.create);
+
+  final Stream<Product?> Function(ProductStreamRef ref) create;
 
   @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+  final ProductStreamFamily overriddenFamily;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'productStreamProvider';
+  ProductStreamProvider getProviderOverride(
+    covariant ProductStreamProvider provider,
+  ) {
+    return provider._copyWith(create);
+  }
 }
 
 /// See also [productStream].
@@ -145,7 +168,7 @@ class ProductStreamProvider extends AutoDisposeStreamProvider<Product?> {
         );
 
   ProductStreamProvider._internal(
-    super._createNotifier, {
+    super.create, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -158,7 +181,7 @@ class ProductStreamProvider extends AutoDisposeStreamProvider<Product?> {
 
   @override
   Override overrideWith(
-    Stream<Product?> Function(ProductStreamRef provider) create,
+    Stream<Product?> Function(ProductStreamRef ref) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -182,6 +205,20 @@ class ProductStreamProvider extends AutoDisposeStreamProvider<Product?> {
   @override
   AutoDisposeStreamProviderElement<Product?> createElement() {
     return _ProductStreamProviderElement(this);
+  }
+
+  ProductStreamProvider _copyWith(
+    Stream<Product?> Function(ProductStreamRef ref) create,
+  ) {
+    return ProductStreamProvider._internal(
+      (ref) => create(ref as ProductStreamRef),
+      name: name,
+      dependencies: dependencies,
+      allTransitiveDependencies: allTransitiveDependencies,
+      debugGetCreateSourceHash: debugGetCreateSourceHash,
+      from: from,
+      id: id,
+    );
   }
 
   @override
@@ -222,6 +259,20 @@ class ProductFutureFamily extends Family<AsyncValue<Product?>> {
   /// See also [productFuture].
   const ProductFutureFamily();
 
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'productFutureProvider';
+
   /// See also [productFuture].
   ProductFutureProvider call(
     ProductID id,
@@ -241,19 +292,28 @@ class ProductFutureFamily extends Family<AsyncValue<Product?>> {
     );
   }
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
+  /// Enables overriding the behavior of this provider, no matter the parameters.
+  Override overrideWith(
+      FutureOr<Product?> Function(ProductFutureRef ref) create) {
+    return _$ProductFutureFamilyOverride(this, create);
+  }
+}
+
+class _$ProductFutureFamilyOverride
+    implements FamilyOverride<AsyncValue<Product?>> {
+  _$ProductFutureFamilyOverride(this.overriddenFamily, this.create);
+
+  final FutureOr<Product?> Function(ProductFutureRef ref) create;
 
   @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+  final ProductFutureFamily overriddenFamily;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'productFutureProvider';
+  ProductFutureProvider getProviderOverride(
+    covariant ProductFutureProvider provider,
+  ) {
+    return provider._copyWith(create);
+  }
 }
 
 /// See also [productFuture].
@@ -279,7 +339,7 @@ class ProductFutureProvider extends AutoDisposeFutureProvider<Product?> {
         );
 
   ProductFutureProvider._internal(
-    super._createNotifier, {
+    super.create, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -292,7 +352,7 @@ class ProductFutureProvider extends AutoDisposeFutureProvider<Product?> {
 
   @override
   Override overrideWith(
-    FutureOr<Product?> Function(ProductFutureRef provider) create,
+    FutureOr<Product?> Function(ProductFutureRef ref) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -316,6 +376,20 @@ class ProductFutureProvider extends AutoDisposeFutureProvider<Product?> {
   @override
   AutoDisposeFutureProviderElement<Product?> createElement() {
     return _ProductFutureProviderElement(this);
+  }
+
+  ProductFutureProvider _copyWith(
+    FutureOr<Product?> Function(ProductFutureRef ref) create,
+  ) {
+    return ProductFutureProvider._internal(
+      (ref) => create(ref as ProductFutureRef),
+      name: name,
+      dependencies: dependencies,
+      allTransitiveDependencies: allTransitiveDependencies,
+      debugGetCreateSourceHash: debugGetCreateSourceHash,
+      from: from,
+      id: id,
+    );
   }
 
   @override

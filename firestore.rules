@@ -2,10 +2,18 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-     match /products/{id} {
+    // cart
+    match /products/{id} {
       allow read: if true;
       allow write: if request.auth != null && request.auth.token.admin == true;
+      // alternative without custom claim, same as above but additional cost of read each time
+      // allow write: if request.auth != null && get(/databases/{database}/metadata/$(request.auth.uid)).data.admin == true;
     }
+    // needed by UserMetadataRepository
+    match /metadata/{uid} {
+      allow read: if request.auth.uid == uid;
+    }
+    // jobs
     match /users/{uid}/jobs/{jobId} {
       allow read, write: if request.auth.uid == uid;
     }
