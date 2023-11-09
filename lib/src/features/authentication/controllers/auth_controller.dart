@@ -28,6 +28,20 @@ class AuthController extends _$AuthController {
     // return state.hasError == false;
   }
 
+  Future<void> forgotPassword({
+    required String email,
+  }) async {
+    final authRepository = ref.read(authRepositoryProvider);
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(
+        () => authRepository.sendPasswordResetEmail(email: email));
+    if (!state.hasError) {
+      // ignore: avoid_manual_providers_as_generated_provider_dependency
+      ref.read(goRouterProvider).goNamed(AppRoute.home.name);
+    }
+    // return state.hasError == false;
+  }
+
   Future<void> signOut() async {
     final authRepository = ref.read(authRepositoryProvider);
     state = const AsyncLoading();
@@ -38,5 +52,13 @@ class AuthController extends _$AuthController {
     }
   }
 
-  
+  Future<void> signOuts() async {
+    final authRepository = ref.read(authRepositoryProvider);
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() => authRepository.signOut());
+    if (!state.hasError) {
+      // ignore: avoid_manual_providers_as_generated_provider_dependency
+      ref.read(goRouterProvider).goNamed(AppRoute.home.name);
+    }
+  }
 }

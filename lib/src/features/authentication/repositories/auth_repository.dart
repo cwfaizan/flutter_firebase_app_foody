@@ -28,6 +28,12 @@ class AuthRepository {
     return _auth.signOut();
   }
 
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    return await FirebaseAuth.instance.sendPasswordResetEmail(
+      email: email,
+    );
+  }
+
   /// Notifies about changes to the user's sign-in state (such as sign-in or
   /// sign-out).
   Stream<AppUser?> authStateChanges() {
