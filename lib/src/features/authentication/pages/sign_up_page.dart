@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../enums/auth_form_type.dart';
 import '../../../routing/app_router.dart';
-import '../widgets/submit_button.dart';
+import '../widgets/auth_button.dart';
 
 class SignUpPage extends ConsumerWidget {
   SignUpPage({super.key});
@@ -28,7 +28,7 @@ class SignUpPage extends ConsumerWidget {
               controller: passwordController,
               obscureText: true,
             ),
-            SubmitButton(
+            AuthButton(
               email: emailController,
               password: passwordController,
               formType: AuthFormType.register,

@@ -17,7 +17,7 @@ class AdminProductEditPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // * By watching a [FutureProvider], the data is only loaded once.
     // * This prevents unintended rebuilds while the user is entering form data
-    final productValue = ref.watch(productFutureProvider(productId));
+    final productValue = ref.watch(futureProductProvider(productId));
     // * Using .when rather than [AsyncValueWidget] to provide custom error and
     // * loading screens
     return productValue.when(

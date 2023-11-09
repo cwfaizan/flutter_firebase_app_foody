@@ -14,25 +14,25 @@ class ProductsRepository {
   static String productsPath() => 'products';
   static String productPath(ProductID id) => 'products/$id';
 
-  Future<List<Product>> fetchProductsList() async {
+  Future<List<Product>> futureProductsList() async {
     final ref = _productsRef();
     final snapshot = await ref.get();
     return snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList();
   }
 
-  Stream<List<Product>> watchProductsList() {
+  Stream<List<Product>> streamProductsList() {
     final ref = _productsRef();
     return ref.snapshots().map((snapshot) =>
         snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList());
   }
 
-  Future<Product?> fetchProduct(ProductID id) async {
+  Future<Product?> futureProduct(ProductID id) async {
     final ref = _productRef(id);
     final snapshot = await ref.get();
     return snapshot.data();
   }
 
-  Stream<Product?> watchProduct(ProductID id) {
+  Stream<Product?> streamProduct(ProductID id) {
     final ref = _productRef(id);
     return ref.snapshots().map((snapshot) => snapshot.data());
   }
@@ -77,7 +77,7 @@ class ProductsRepository {
   // * Todo: Replace this with server side search
   Future<List<Product>> search(String query) async {
     // 1. Get all products from Firestore
-    final productsList = await fetchProductsList();
+    final productsList = await futureProductsList();
     // 2. Perform client-side filtering
     return productsList
         .where((product) =>
@@ -92,25 +92,25 @@ ProductsRepository productsRepository(ProductsRepositoryRef ref) {
 }
 
 @riverpod
-Stream<List<Product>> productsListStream(ProductsListStreamRef ref) {
+Stream<List<Product>> streamProductsList(StreamProductsListRef ref) {
   final productsRepository = ref.watch(productsRepositoryProvider);
-  return productsRepository.watchProductsList();
+  return productsRepository.streamProductsList();
 }
 
 @riverpod
-Future<List<Product>> productsListFuture(ProductsListFutureRef ref) {
+Future<List<Product>> futureProductsList(FutureProductsListRef ref) {
   final productsRepository = ref.watch(productsRepositoryProvider);
-  return productsRepository.fetchProductsList();
+  return productsRepository.futureProductsList();
 }
 
 @riverpod
-Stream<Product?> productStream(ProductStreamRef ref, ProductID id) {
+Stream<Product?> streamProduct(StreamProductRef ref, ProductID id) {
   final productsRepository = ref.watch(productsRepositoryProvider);
-  return productsRepository.watchProduct(id);
+  return productsRepository.streamProduct(id);
 }
 
 @riverpod
-Future<Product?> productFuture(ProductFutureRef ref, ProductID id) {
+Future<Product?> futureProduct(FutureProductRef ref, ProductID id) {
   final productsRepository = ref.watch(productsRepositoryProvider);
-  return productsRepository.fetchProduct(id);
+  return productsRepository.futureProduct(id);
 }

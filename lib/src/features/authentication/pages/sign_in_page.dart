@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../enums/auth_form_type.dart';
 import '../../../routing/app_router.dart';
 import '../controllers/auth_controller.dart';
-import '../widgets/submit_button.dart';
+import '../widgets/auth_button.dart';
 
 // ignore: must_be_immutable
 class SignInPage extends ConsumerWidget {
@@ -30,7 +30,7 @@ class SignInPage extends ConsumerWidget {
               controller: passwordController,
               obscureText: true,
             ),
-            SubmitButton(
+            AuthButton(
               email: emailController,
               password: passwordController,
               formType: AuthFormType.signIn,

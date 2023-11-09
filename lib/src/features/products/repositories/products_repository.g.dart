@@ -22,41 +22,41 @@ final productsRepositoryProvider = Provider<ProductsRepository>.internal(
 );
 
 typedef ProductsRepositoryRef = ProviderRef<ProductsRepository>;
-String _$productsListStreamHash() =>
-    r'6ce4881c188ad3ff4e1f795150e00decd5aa2fa0';
+String _$streamProductsListHash() =>
+    r'086224a39e9fb65379ea9b31bd357a2564e9afcd';
 
-/// See also [productsListStream].
-@ProviderFor(productsListStream)
-final productsListStreamProvider =
+/// See also [streamProductsList].
+@ProviderFor(streamProductsList)
+final streamProductsListProvider =
     AutoDisposeStreamProvider<List<Product>>.internal(
-  productsListStream,
-  name: r'productsListStreamProvider',
+  streamProductsList,
+  name: r'streamProductsListProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$productsListStreamHash,
+      : _$streamProductsListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef ProductsListStreamRef = AutoDisposeStreamProviderRef<List<Product>>;
-String _$productsListFutureHash() =>
-    r'8f018bf574c889710ce2ba492782d7bb421cfbed';
+typedef StreamProductsListRef = AutoDisposeStreamProviderRef<List<Product>>;
+String _$futureProductsListHash() =>
+    r'1e0e99f9560f1f2cecbb01ca2fea527178a36bb3';
 
-/// See also [productsListFuture].
-@ProviderFor(productsListFuture)
-final productsListFutureProvider =
+/// See also [futureProductsList].
+@ProviderFor(futureProductsList)
+final futureProductsListProvider =
     AutoDisposeFutureProvider<List<Product>>.internal(
-  productsListFuture,
-  name: r'productsListFutureProvider',
+  futureProductsList,
+  name: r'futureProductsListProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$productsListFutureHash,
+      : _$futureProductsListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef ProductsListFutureRef = AutoDisposeFutureProviderRef<List<Product>>;
-String _$productStreamHash() => r'ca05835175ed8380c860c10fae540144f62093d5';
+typedef FutureProductsListRef = AutoDisposeFutureProviderRef<List<Product>>;
+String _$streamProductHash() => r'd4e50780d68783c7922b15ef3e0adf91b09923a4';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -79,14 +79,14 @@ class _SystemHash {
   }
 }
 
-/// See also [productStream].
-@ProviderFor(productStream)
-const productStreamProvider = ProductStreamFamily();
+/// See also [streamProduct].
+@ProviderFor(streamProduct)
+const streamProductProvider = StreamProductFamily();
 
-/// See also [productStream].
-class ProductStreamFamily extends Family<AsyncValue<Product?>> {
-  /// See also [productStream].
-  const ProductStreamFamily();
+/// See also [streamProduct].
+class StreamProductFamily extends Family<AsyncValue<Product?>> {
+  /// See also [streamProduct].
+  const StreamProductFamily();
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
 
@@ -100,21 +100,21 @@ class ProductStreamFamily extends Family<AsyncValue<Product?>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'productStreamProvider';
+  String? get name => r'streamProductProvider';
 
-  /// See also [productStream].
-  ProductStreamProvider call(
+  /// See also [streamProduct].
+  StreamProductProvider call(
     ProductID id,
   ) {
-    return ProductStreamProvider(
+    return StreamProductProvider(
       id,
     );
   }
 
   @visibleForOverriding
   @override
-  ProductStreamProvider getProviderOverride(
-    covariant ProductStreamProvider provider,
+  StreamProductProvider getProviderOverride(
+    covariant StreamProductProvider provider,
   ) {
     return call(
       provider.id,
@@ -123,51 +123,51 @@ class ProductStreamFamily extends Family<AsyncValue<Product?>> {
 
   /// Enables overriding the behavior of this provider, no matter the parameters.
   Override overrideWith(
-      Stream<Product?> Function(ProductStreamRef ref) create) {
-    return _$ProductStreamFamilyOverride(this, create);
+      Stream<Product?> Function(StreamProductRef ref) create) {
+    return _$StreamProductFamilyOverride(this, create);
   }
 }
 
-class _$ProductStreamFamilyOverride
+class _$StreamProductFamilyOverride
     implements FamilyOverride<AsyncValue<Product?>> {
-  _$ProductStreamFamilyOverride(this.overriddenFamily, this.create);
+  _$StreamProductFamilyOverride(this.overriddenFamily, this.create);
 
-  final Stream<Product?> Function(ProductStreamRef ref) create;
-
-  @override
-  final ProductStreamFamily overriddenFamily;
+  final Stream<Product?> Function(StreamProductRef ref) create;
 
   @override
-  ProductStreamProvider getProviderOverride(
-    covariant ProductStreamProvider provider,
+  final StreamProductFamily overriddenFamily;
+
+  @override
+  StreamProductProvider getProviderOverride(
+    covariant StreamProductProvider provider,
   ) {
     return provider._copyWith(create);
   }
 }
 
-/// See also [productStream].
-class ProductStreamProvider extends AutoDisposeStreamProvider<Product?> {
-  /// See also [productStream].
-  ProductStreamProvider(
+/// See also [streamProduct].
+class StreamProductProvider extends AutoDisposeStreamProvider<Product?> {
+  /// See also [streamProduct].
+  StreamProductProvider(
     ProductID id,
   ) : this._internal(
-          (ref) => productStream(
-            ref as ProductStreamRef,
+          (ref) => streamProduct(
+            ref as StreamProductRef,
             id,
           ),
-          from: productStreamProvider,
-          name: r'productStreamProvider',
+          from: streamProductProvider,
+          name: r'streamProductProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$productStreamHash,
-          dependencies: ProductStreamFamily._dependencies,
+                  : _$streamProductHash,
+          dependencies: StreamProductFamily._dependencies,
           allTransitiveDependencies:
-              ProductStreamFamily._allTransitiveDependencies,
+              StreamProductFamily._allTransitiveDependencies,
           id: id,
         );
 
-  ProductStreamProvider._internal(
+  StreamProductProvider._internal(
     super.create, {
     required super.name,
     required super.dependencies,
@@ -181,12 +181,12 @@ class ProductStreamProvider extends AutoDisposeStreamProvider<Product?> {
 
   @override
   Override overrideWith(
-    Stream<Product?> Function(ProductStreamRef ref) create,
+    Stream<Product?> Function(StreamProductRef ref) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: ProductStreamProvider._internal(
-        (ref) => create(ref as ProductStreamRef),
+      override: StreamProductProvider._internal(
+        (ref) => create(ref as StreamProductRef),
         from: from,
         name: null,
         dependencies: null,
@@ -204,14 +204,14 @@ class ProductStreamProvider extends AutoDisposeStreamProvider<Product?> {
 
   @override
   AutoDisposeStreamProviderElement<Product?> createElement() {
-    return _ProductStreamProviderElement(this);
+    return _StreamProductProviderElement(this);
   }
 
-  ProductStreamProvider _copyWith(
-    Stream<Product?> Function(ProductStreamRef ref) create,
+  StreamProductProvider _copyWith(
+    Stream<Product?> Function(StreamProductRef ref) create,
   ) {
-    return ProductStreamProvider._internal(
-      (ref) => create(ref as ProductStreamRef),
+    return StreamProductProvider._internal(
+      (ref) => create(ref as StreamProductRef),
       name: name,
       dependencies: dependencies,
       allTransitiveDependencies: allTransitiveDependencies,
@@ -223,7 +223,7 @@ class ProductStreamProvider extends AutoDisposeStreamProvider<Product?> {
 
   @override
   bool operator ==(Object other) {
-    return other is ProductStreamProvider && other.id == id;
+    return other is StreamProductProvider && other.id == id;
   }
 
   @override
@@ -235,29 +235,29 @@ class ProductStreamProvider extends AutoDisposeStreamProvider<Product?> {
   }
 }
 
-mixin ProductStreamRef on AutoDisposeStreamProviderRef<Product?> {
+mixin StreamProductRef on AutoDisposeStreamProviderRef<Product?> {
   /// The parameter `id` of this provider.
   ProductID get id;
 }
 
-class _ProductStreamProviderElement
-    extends AutoDisposeStreamProviderElement<Product?> with ProductStreamRef {
-  _ProductStreamProviderElement(super.provider);
+class _StreamProductProviderElement
+    extends AutoDisposeStreamProviderElement<Product?> with StreamProductRef {
+  _StreamProductProviderElement(super.provider);
 
   @override
-  ProductID get id => (origin as ProductStreamProvider).id;
+  ProductID get id => (origin as StreamProductProvider).id;
 }
 
-String _$productFutureHash() => r'882ff9553d805c3f9d5e6cc7666d3201ca4d3403';
+String _$futureProductHash() => r'fdf06bc97757344c5b0f433255d189af8fbac399';
 
-/// See also [productFuture].
-@ProviderFor(productFuture)
-const productFutureProvider = ProductFutureFamily();
+/// See also [futureProduct].
+@ProviderFor(futureProduct)
+const futureProductProvider = FutureProductFamily();
 
-/// See also [productFuture].
-class ProductFutureFamily extends Family<AsyncValue<Product?>> {
-  /// See also [productFuture].
-  const ProductFutureFamily();
+/// See also [futureProduct].
+class FutureProductFamily extends Family<AsyncValue<Product?>> {
+  /// See also [futureProduct].
+  const FutureProductFamily();
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
 
@@ -271,21 +271,21 @@ class ProductFutureFamily extends Family<AsyncValue<Product?>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'productFutureProvider';
+  String? get name => r'futureProductProvider';
 
-  /// See also [productFuture].
-  ProductFutureProvider call(
+  /// See also [futureProduct].
+  FutureProductProvider call(
     ProductID id,
   ) {
-    return ProductFutureProvider(
+    return FutureProductProvider(
       id,
     );
   }
 
   @visibleForOverriding
   @override
-  ProductFutureProvider getProviderOverride(
-    covariant ProductFutureProvider provider,
+  FutureProductProvider getProviderOverride(
+    covariant FutureProductProvider provider,
   ) {
     return call(
       provider.id,
@@ -294,51 +294,51 @@ class ProductFutureFamily extends Family<AsyncValue<Product?>> {
 
   /// Enables overriding the behavior of this provider, no matter the parameters.
   Override overrideWith(
-      FutureOr<Product?> Function(ProductFutureRef ref) create) {
-    return _$ProductFutureFamilyOverride(this, create);
+      FutureOr<Product?> Function(FutureProductRef ref) create) {
+    return _$FutureProductFamilyOverride(this, create);
   }
 }
 
-class _$ProductFutureFamilyOverride
+class _$FutureProductFamilyOverride
     implements FamilyOverride<AsyncValue<Product?>> {
-  _$ProductFutureFamilyOverride(this.overriddenFamily, this.create);
+  _$FutureProductFamilyOverride(this.overriddenFamily, this.create);
 
-  final FutureOr<Product?> Function(ProductFutureRef ref) create;
-
-  @override
-  final ProductFutureFamily overriddenFamily;
+  final FutureOr<Product?> Function(FutureProductRef ref) create;
 
   @override
-  ProductFutureProvider getProviderOverride(
-    covariant ProductFutureProvider provider,
+  final FutureProductFamily overriddenFamily;
+
+  @override
+  FutureProductProvider getProviderOverride(
+    covariant FutureProductProvider provider,
   ) {
     return provider._copyWith(create);
   }
 }
 
-/// See also [productFuture].
-class ProductFutureProvider extends AutoDisposeFutureProvider<Product?> {
-  /// See also [productFuture].
-  ProductFutureProvider(
+/// See also [futureProduct].
+class FutureProductProvider extends AutoDisposeFutureProvider<Product?> {
+  /// See also [futureProduct].
+  FutureProductProvider(
     ProductID id,
   ) : this._internal(
-          (ref) => productFuture(
-            ref as ProductFutureRef,
+          (ref) => futureProduct(
+            ref as FutureProductRef,
             id,
           ),
-          from: productFutureProvider,
-          name: r'productFutureProvider',
+          from: futureProductProvider,
+          name: r'futureProductProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$productFutureHash,
-          dependencies: ProductFutureFamily._dependencies,
+                  : _$futureProductHash,
+          dependencies: FutureProductFamily._dependencies,
           allTransitiveDependencies:
-              ProductFutureFamily._allTransitiveDependencies,
+              FutureProductFamily._allTransitiveDependencies,
           id: id,
         );
 
-  ProductFutureProvider._internal(
+  FutureProductProvider._internal(
     super.create, {
     required super.name,
     required super.dependencies,
@@ -352,12 +352,12 @@ class ProductFutureProvider extends AutoDisposeFutureProvider<Product?> {
 
   @override
   Override overrideWith(
-    FutureOr<Product?> Function(ProductFutureRef ref) create,
+    FutureOr<Product?> Function(FutureProductRef ref) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: ProductFutureProvider._internal(
-        (ref) => create(ref as ProductFutureRef),
+      override: FutureProductProvider._internal(
+        (ref) => create(ref as FutureProductRef),
         from: from,
         name: null,
         dependencies: null,
@@ -375,14 +375,14 @@ class ProductFutureProvider extends AutoDisposeFutureProvider<Product?> {
 
   @override
   AutoDisposeFutureProviderElement<Product?> createElement() {
-    return _ProductFutureProviderElement(this);
+    return _FutureProductProviderElement(this);
   }
 
-  ProductFutureProvider _copyWith(
-    FutureOr<Product?> Function(ProductFutureRef ref) create,
+  FutureProductProvider _copyWith(
+    FutureOr<Product?> Function(FutureProductRef ref) create,
   ) {
-    return ProductFutureProvider._internal(
-      (ref) => create(ref as ProductFutureRef),
+    return FutureProductProvider._internal(
+      (ref) => create(ref as FutureProductRef),
       name: name,
       dependencies: dependencies,
       allTransitiveDependencies: allTransitiveDependencies,
@@ -394,7 +394,7 @@ class ProductFutureProvider extends AutoDisposeFutureProvider<Product?> {
 
   @override
   bool operator ==(Object other) {
-    return other is ProductFutureProvider && other.id == id;
+    return other is FutureProductProvider && other.id == id;
   }
 
   @override
@@ -406,17 +406,17 @@ class ProductFutureProvider extends AutoDisposeFutureProvider<Product?> {
   }
 }
 
-mixin ProductFutureRef on AutoDisposeFutureProviderRef<Product?> {
+mixin FutureProductRef on AutoDisposeFutureProviderRef<Product?> {
   /// The parameter `id` of this provider.
   ProductID get id;
 }
 
-class _ProductFutureProviderElement
-    extends AutoDisposeFutureProviderElement<Product?> with ProductFutureRef {
-  _ProductFutureProviderElement(super.provider);
+class _FutureProductProviderElement
+    extends AutoDisposeFutureProviderElement<Product?> with FutureProductRef {
+  _FutureProductProviderElement(super.provider);
 
   @override
-  ProductID get id => (origin as ProductFutureProvider).id;
+  ProductID get id => (origin as FutureProductProvider).id;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package

@@ -18,7 +18,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await setUpEmulators();
+  // await setUpEmulators();
   runApp(const ProviderScope(child: MyApp()));
 }
 

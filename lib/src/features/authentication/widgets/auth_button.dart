@@ -5,8 +5,8 @@ import '../controllers/auth_controller.dart';
 import '../../../utils/async_value_ui.dart';
 import '../../../enums/auth_form_type.dart';
 
-class SubmitButton extends ConsumerWidget {
-  const SubmitButton({
+class AuthButton extends ConsumerWidget {
+  const AuthButton({
     super.key,
     required this.email,
     required this.password,
