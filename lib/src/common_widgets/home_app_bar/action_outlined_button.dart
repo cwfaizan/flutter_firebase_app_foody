@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../constants/app_sizes.dart';
 
 /// Text button to be used as an [AppBar] action
-class ActionTextButton extends StatelessWidget {
-  const ActionTextButton({super.key, required this.text, this.onPressed});
+class ActionOutlinedButton extends StatelessWidget {
+  const ActionOutlinedButton({super.key, required this.text, this.onPressed});
   final String text;
   final VoidCallback? onPressed;
   @override

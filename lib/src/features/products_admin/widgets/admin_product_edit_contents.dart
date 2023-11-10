@@ -3,7 +3,8 @@ import 'package:cwf_fudy/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../common_widgets/home_app_bar/action_text_button.dart';
+import '../../../common_widgets/custom_message.dart';
+import '../../../common_widgets/home_app_bar/action_outlined_button.dart';
 import '../../../common_widgets/custom_image.dart';
 import '../../../common_widgets/responsive_center.dart';
 import '../../../common_widgets/responsive_two_column_layout.dart';
@@ -25,12 +26,10 @@ class AdminProductEditPageContents extends ConsumerStatefulWidget {
 class _AdminProductScreenContentsState
     extends ConsumerState<AdminProductEditPageContents> {
   final _formKey = GlobalKey<FormState>();
-
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _priceController = TextEditingController();
   final _availableQuantityController = TextEditingController();
-
   Product get product => widget.product;
 
   @override
@@ -41,15 +40,6 @@ class _AdminProductScreenContentsState
     _descriptionController.text = product.description;
     _priceController.text = product.price.toString();
     _availableQuantityController.text = product.availableQuantity.toString();
-  }
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _descriptionController.dispose();
-    _priceController.dispose();
-    _availableQuantityController.dispose();
-    super.dispose();
   }
 
   // Future<void> _delete() async {
@@ -66,9 +56,8 @@ class _AdminProductScreenContentsState
   //   }
   // }
 
-  Future<void> _submit() async {
+  Future<void> _updateProduct() async {
     if (_formKey.currentState!.validate()) {
-      final scaffoldMessenger = ScaffoldMessenger.of(context);
       final success = await ref
           .read(adminProductEditControllerProvider.notifier)
           .updateProduct(
@@ -80,12 +69,10 @@ class _AdminProductScreenContentsState
           );
       if (success) {
         // Inform the user that the product has been updated
-        scaffoldMessenger.showSnackBar(
-          SnackBar(
-            content: Text(
-              'Product updated'.hardcoded,
-            ),
-          ),
+        // ignore: use_build_context_synchronously
+        showMessage(
+          context,
+          'Product updated'.hardcoded,
         );
       }
     }
@@ -104,9 +91,9 @@ class _AdminProductScreenContentsState
       appBar: AppBar(
         title: Text('Edit Product'.hardcoded),
         actions: [
-          ActionTextButton(
+          ActionOutlinedButton(
             text: 'Save'.hardcoded,
-            onPressed: isLoading ? null : _submit,
+            onPressed: isLoading ? null : _updateProduct,
           ),
         ],
       ),
@@ -193,5 +180,14 @@ class _AdminProductScreenContentsState
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _descriptionController.dispose();
+    _priceController.dispose();
+    _availableQuantityController.dispose();
+    super.dispose();
   }
 }

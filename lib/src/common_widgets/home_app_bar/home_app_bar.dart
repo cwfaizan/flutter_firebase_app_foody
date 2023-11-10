@@ -7,7 +7,7 @@ import '../../constants/breakpoints.dart';
 import '../../features/authentication/controllers/auth_controller.dart';
 import '../../features/authentication/repositories/auth_repository.dart';
 import '../../routing/app_router.dart';
-import 'action_text_button.dart';
+import 'action_outlined_button.dart';
 import 'more_menu_button.dart';
 
 /// Custom [AppBar] widget that is reused by the [ProductsListScreen] and
@@ -45,17 +45,17 @@ class HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
         actions: [
           // const ShoppingCartIcon(),
           if (user != null) ...[
-            ActionTextButton(
+            ActionOutlinedButton(
               key: MoreMenuButton.ordersKey,
               text: 'Orders'.hardcoded,
               onPressed: () => context.pushNamed(AppRoute.orders.name),
             ),
-            ActionTextButton(
+            ActionOutlinedButton(
               key: MoreMenuButton.accountKey,
               text: 'Account'.hardcoded,
               onPressed: () => context.pushNamed(AppRoute.account.name),
             ),
-            ActionTextButton(
+            ActionOutlinedButton(
               key: MoreMenuButton.logoutKey,
               text: 'Logout'.hardcoded,
               onPressed: () {
@@ -63,13 +63,13 @@ class HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
               },
             ),
           ] else
-            ActionTextButton(
+            ActionOutlinedButton(
               key: MoreMenuButton.signInKey,
               text: 'Sign In'.hardcoded,
               onPressed: () => context.pushNamed(AppRoute.signIn.name),
             ),
           if (isAdminUser)
-            ActionTextButton(
+            ActionOutlinedButton(
               key: MoreMenuButton.adminKey,
               text: 'Admin'.hardcoded,
               onPressed: () => context.pushNamed(AppRoute.admin.name),
