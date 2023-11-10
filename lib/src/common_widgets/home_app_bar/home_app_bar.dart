@@ -7,7 +7,7 @@ import '../../constants/breakpoints.dart';
 import '../../features/authentication/controllers/auth_controller.dart';
 import '../../features/authentication/repositories/auth_repository.dart';
 import '../../routing/app_router.dart';
-import '../action_text_button.dart';
+import 'action_text_button.dart';
 import 'more_menu_button.dart';
 
 /// Custom [AppBar] widget that is reused by the [ProductsListScreen] and

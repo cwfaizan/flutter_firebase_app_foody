@@ -3,7 +3,7 @@ import 'package:cwf_fudy/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../common_widgets/action_text_button.dart';
+import '../../../common_widgets/home_app_bar/action_text_button.dart';
 import '../../../common_widgets/custom_image.dart';
 import '../../../common_widgets/responsive_center.dart';
 import '../../../common_widgets/responsive_two_column_layout.dart';

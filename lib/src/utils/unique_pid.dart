@@ -3,7 +3,7 @@ import 'package:uuid/uuid.dart';
 
 part 'unique_pid.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 Uuid uuid(UuidRef ref) {
   return const Uuid();
 }
