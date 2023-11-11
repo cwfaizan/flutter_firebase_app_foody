@@ -45,16 +45,16 @@ class HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
         actions: [
           // const ShoppingCartIcon(),
           if (user != null) ...[
-            ActionOutlinedButton(
-              key: MoreMenuButton.ordersKey,
-              text: 'Orders'.hardcoded,
-              onPressed: () => context.pushNamed(AppRoute.orders.name),
-            ),
-            ActionOutlinedButton(
-              key: MoreMenuButton.accountKey,
-              text: 'Account'.hardcoded,
-              onPressed: () => context.pushNamed(AppRoute.account.name),
-            ),
+            // ActionOutlinedButton(
+            //   key: MoreMenuButton.ordersKey,
+            //   text: 'Orders'.hardcoded,
+            //   onPressed: () => context.pushNamed(AppRoute.orders.name),
+            // ),
+            // ActionOutlinedButton(
+            //   key: MoreMenuButton.accountKey,
+            //   text: 'Account'.hardcoded,
+            //   onPressed: () => context.pushNamed(AppRoute.account.name),
+            // ),
             ActionOutlinedButton(
               key: MoreMenuButton.logoutKey,
               text: 'Logout'.hardcoded,

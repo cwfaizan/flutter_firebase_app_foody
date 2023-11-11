@@ -15,12 +15,12 @@ import 'go_router_refresh_stream.dart';
 
 enum AppRoute {
   home,
-  product,
-  leaveReview,
-  cart,
-  checkout,
-  orders,
-  account,
+  // product,
+  // leaveReview,
+  // cart,
+  // checkout,
+  // orders,
+  // account,
   signIn,
   signUp,
   admin,

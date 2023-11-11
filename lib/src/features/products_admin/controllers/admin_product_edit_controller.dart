@@ -53,16 +53,16 @@ class AdminProductEditController extends _$AdminProductEditController
   Future<void> deleteProduct(Product product) async {
     final imageUploadService = ref.read(imageUploadServiceProvider);
     state = const AsyncLoading();
-    final value =
+    state =
         await AsyncValue.guard(() => imageUploadService.deleteProduct(product));
-    final success = value.hasError == false;
-    if (mounted) {
-      state = value;
-      if (success) {
-        // on success, go back to previous screen
-        // ignore: avoid_manual_providers_as_generated_provider_dependency
-        ref.read(goRouterProvider).pop();
-      }
-    }
+    // final success = value.hasError == false;
+    // if (mounted) {
+    // state = value;
+    // if (success) {
+    //   // on success, go back to previous screen
+    //   // ignore: avoid_manual_providers_as_generated_provider_dependency
+    //   ref.read(goRouterProvider).pop();
+    // }
+    // }
   }
 }

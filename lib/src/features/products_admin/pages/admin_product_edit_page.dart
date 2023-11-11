@@ -38,32 +38,3 @@ class AdminProductEditPage extends ConsumerWidget {
     );
   }
 }
-
-/*
-/// Responsive widget with options to preload product data and delete a product
-class EditProductOptions extends StatelessWidget {
-  const EditProductOptions(
-      {super.key, required this.onLoadFromTemplate, required this.onDelete});
-  final VoidCallback? onLoadFromTemplate;
-  final VoidCallback? onDelete;
-
-  @override
-  Widget build(BuildContext context) {
-    return ResponsiveTwoColumnLayout(
-      rowMainAxisAlignment: MainAxisAlignment.center,
-      startContent: CustomTextButton(
-        text: 'Load from Template'.hardcoded,
-        style: Theme.of(context).textTheme.titleSmall,
-        onPressed: onLoadFromTemplate,
-      ),
-      endContent: CustomTextButton(
-        text: 'Delete Product'.hardcoded,
-        style:
-            Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.red),
-        onPressed: onDelete,
-      ),
-      spacing: Sizes.p8,
-    );
-  }
-}
-*/

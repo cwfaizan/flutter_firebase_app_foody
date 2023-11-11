@@ -7,8 +7,8 @@ import '../../routing/app_router.dart';
 
 enum PopupMenuOption {
   signIn,
-  orders,
-  account,
+  // orders,
+  // account,
   admin,
 }
 
@@ -33,16 +33,16 @@ class MoreMenuButton extends StatelessWidget {
         // show all the options based on conditional logic
         return <PopupMenuEntry<PopupMenuOption>>[
           if (user != null) ...[
-            PopupMenuItem(
-              key: ordersKey,
-              value: PopupMenuOption.orders,
-              child: Text('Orders'.hardcoded),
-            ),
-            PopupMenuItem(
-              key: accountKey,
-              value: PopupMenuOption.account,
-              child: Text('Account'.hardcoded),
-            ),
+            // PopupMenuItem(
+            //   key: ordersKey,
+            //   value: PopupMenuOption.orders,
+            //   child: Text('Orders'.hardcoded),
+            // ),
+            // PopupMenuItem(
+            //   key: accountKey,
+            //   value: PopupMenuOption.account,
+            //   child: Text('Account'.hardcoded),
+            // ),
             if (isAdminUser)
               PopupMenuItem(
                 key: adminKey,
@@ -62,10 +62,10 @@ class MoreMenuButton extends StatelessWidget {
         switch (option) {
           case PopupMenuOption.signIn:
             context.pushNamed(AppRoute.signIn.name);
-          case PopupMenuOption.orders:
-            context.pushNamed(AppRoute.orders.name);
-          case PopupMenuOption.account:
-            context.pushNamed(AppRoute.account.name);
+          // case PopupMenuOption.orders:
+          //   context.pushNamed(AppRoute.orders.name);
+          // case PopupMenuOption.account:
+          //   context.pushNamed(AppRoute.account.name);
           case PopupMenuOption.admin:
             context.pushNamed(AppRoute.admin.name);
         }

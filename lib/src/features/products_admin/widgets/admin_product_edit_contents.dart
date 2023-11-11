@@ -42,20 +42,6 @@ class _AdminProductScreenContentsState
     _availableQuantityController.text = product.availableQuantity.toString();
   }
 
-  // Future<void> _delete() async {
-  //   final delete = await showAlertDialog(
-  //     context: context,
-  //     title: 'Are you sure?'.hardcoded,
-  //     cancelActionText: 'Cancel'.hardcoded,
-  //     defaultActionText: 'Delete'.hardcoded,
-  //   );
-  //   if (delete == true) {
-  //     ref
-  //         .read(adminProductEditControllerProvider.notifier)
-  //         .deleteProduct(product);
-  //   }
-  // }
-
   Future<void> _updateProduct() async {
     if (_formKey.currentState!.validate()) {
       final success = await ref
@@ -164,13 +150,6 @@ class _AdminProductScreenContentsState
                             .availableQuantityValidator,
                       ),
                       gapH16,
-                      // const Divider(),
-                      // gapH8,
-                      // EditProductOptions(
-                      //   onLoadFromTemplate:
-                      //       isLoading ? null : _loadFromTemplate,
-                      //   onDelete: isLoading ? null : _delete,
-                      // ),
                     ],
                   ),
                 ),
