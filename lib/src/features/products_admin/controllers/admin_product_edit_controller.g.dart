@@ -7,7 +7,7 @@ part of 'admin_product_edit_controller.dart';
 // **************************************************************************
 
 String _$adminProductEditControllerHash() =>
-    r'4889ae22666506a4277749ed0b1b98e35ce73194';
+    r'ca4d5bdc14d811748c95237fcf214731a662f2f9';
 
 /// See also [AdminProductEditController].
 @ProviderFor(AdminProductEditController)

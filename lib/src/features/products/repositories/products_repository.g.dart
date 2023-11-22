@@ -84,7 +84,7 @@ class _SystemHash {
 const streamProductProvider = StreamProductFamily();
 
 /// See also [streamProduct].
-class StreamProductFamily extends Family<AsyncValue<Product?>> {
+class StreamProductFamily extends Family {
   /// See also [streamProduct].
   const StreamProductFamily();
 
@@ -128,8 +128,7 @@ class StreamProductFamily extends Family<AsyncValue<Product?>> {
   }
 }
 
-class _$StreamProductFamilyOverride
-    implements FamilyOverride<AsyncValue<Product?>> {
+class _$StreamProductFamilyOverride implements FamilyOverride {
   _$StreamProductFamilyOverride(this.overriddenFamily, this.create);
 
   final Stream<Product?> Function(StreamProductRef ref) create;
@@ -255,7 +254,7 @@ String _$futureProductHash() => r'fdf06bc97757344c5b0f433255d189af8fbac399';
 const futureProductProvider = FutureProductFamily();
 
 /// See also [futureProduct].
-class FutureProductFamily extends Family<AsyncValue<Product?>> {
+class FutureProductFamily extends Family {
   /// See also [futureProduct].
   const FutureProductFamily();
 
@@ -299,8 +298,7 @@ class FutureProductFamily extends Family<AsyncValue<Product?>> {
   }
 }
 
-class _$FutureProductFamilyOverride
-    implements FamilyOverride<AsyncValue<Product?>> {
+class _$FutureProductFamilyOverride implements FamilyOverride {
   _$FutureProductFamilyOverride(this.overriddenFamily, this.create);
 
   final FutureOr<Product?> Function(FutureProductRef ref) create;

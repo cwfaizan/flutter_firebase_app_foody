@@ -1,3 +1,4 @@
+import 'package:cwf_fudy/src/common_widgets/responsive_center.dart';
 import 'package:cwf_fudy/src/features/products/widgets/product_card.dart';
 import 'package:cwf_fudy/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../common_widgets/async_value_widget.dart';
+import '../../../constants/breakpoints.dart';
 import '../../../routing/app_router.dart';
 import '../../authentication/controllers/auth_controller.dart';
 import '../../authentication/repositories/auth_repository.dart';
@@ -58,12 +60,17 @@ class ProductsListPage extends ConsumerWidget {
       ),
       body: AsyncValueWidget(
         value: productsList,
-        data: (products) => ListView.builder(
-          itemCount: products.length,
-          itemBuilder: (context, index) => ProductCard(
-            product: products[index],
-          ),
-        ),
+        data: (products) => products.isNotEmpty
+            ? ListView.builder(
+                itemCount: products.length,
+                itemBuilder: (context, index) => ProductCard(
+                  product: products[index],
+                ),
+              )
+            : const ResponsiveCenter(
+                maxContentWidth: Breakpoint.mobile,
+                child: Text('No Product Found'),
+              ),
       ),
       // body: CustomScrollView(
       //   controller: _scrollController,
